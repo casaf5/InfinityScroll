@@ -14,13 +14,13 @@
 				@select="setOption($event, 'loadingSvg')"
 			/>
 			<BaseSelect
-				label="Header Background color"
+				label="Header Background Color"
 				:options="colors"
 				:initialValue="options.headerBg"
 				@select="setOption($event, 'headerBg')"
 			/>
 			<BaseSelect
-				label="Loder Style"
+				label="Site Background Color"
 				:options="colors"
 				:initialValue="options.siteBg"
 				@select="setOption($event, 'siteBg')"
@@ -36,7 +36,7 @@ export default {
 	data() {
 		return {
 			options: null,
-			colors: ['black', 'red', 'yellow', 'orange', 'green', 'pink', 'white'],
+			colors: ['#ff5c5c', 'black', 'red', 'yellow', 'orange', 'green', 'pink', 'white'],
 			loaderOptions: [
 				'audio',
 				'ball-tringle',
@@ -60,9 +60,9 @@ export default {
 			this.options[key] = selectedOption;
 		},
 	},
+	computed: {},
 	created() {
 		this.options = JSON.parse(JSON.stringify(this.$store.getters.styleOptions));
-		console.log(this.options);
 	},
 };
 </script>

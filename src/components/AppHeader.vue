@@ -1,5 +1,5 @@
 <template>
-	<header class="grid-container">
+	<header class="grid-container" :style="getStyle">
 		<div class="header-container grid-pos-center flex-center">
 			<BaseInput text="Search passenger" @input="setFilter" />
 			<BaseButton>Search</BaseButton>
@@ -21,6 +21,13 @@ export default {
 		return {
 			styleIsOpen: false,
 		};
+	},
+	computed: {
+		getStyle() {
+			let bgColor = this.$store.getters.getStyleOption('headerBg');
+			console.log(bgColor);
+			return `backgroundColor:${bgColor}`;
+		},
 	},
 	methods: {
 		openMenu() {

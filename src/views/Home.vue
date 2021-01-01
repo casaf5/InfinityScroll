@@ -1,19 +1,24 @@
 <template>
 	<div class="home pos-main-container">
-		<Loading v-if="loading" />
-		<PassengersList :passengers="passengers" />
+		<div class="home-wrapper flex col">
+			<!-- <Pagination /> -->
+			<PassengersList :passengers="passengers" />
+			<Loading v-if="loading" />
+		</div>
 	</div>
 </template>
 
 <script>
 import PassengersList from '@/components/PassengersList.vue';
 import Loading from '@/components/Loading.vue';
+import Pagination from '@/components/Pagination.vue';
 import { mapState } from 'vuex';
 export default {
 	name: 'Home',
 	components: {
 		PassengersList,
 		Loading,
+		Pagination,
 	},
 	data() {
 		return {

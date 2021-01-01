@@ -8,9 +8,10 @@ export default new Vuex.Store({
 	state: {
 		passengers: [],
 		loading: false,
+		currPage: 0,
 		filterBy: '',
 		styleOptions: {
-			headerBg: 'blue',
+			headerBg: '#ff5c5c',
 			siteBg: 'white',
 			loadingSvg: 'bars',
 			loadingTextColor: 'white',
@@ -18,6 +19,8 @@ export default new Vuex.Store({
 	},
 	getters: {
 		passengers(state) {
+			// let from = state.currPage * 10;
+			// let slicedPass = state.passengers.slice(from, from + 10);
 			return state.passengers.filter((p) => {
 				return p.name.toLowerCase().includes(state.filterBy.toLowerCase());
 			});
@@ -30,6 +33,9 @@ export default new Vuex.Store({
 				console.log(state.styleOptions[key]);
 				return state.styleOptions[key];
 			};
+		},
+		getLength(state) {
+			return state.passengers.length;
 		},
 	},
 	mutations: {
@@ -44,6 +50,9 @@ export default new Vuex.Store({
 		},
 		setStyleOptions(state, options) {
 			state.styleOptions = options;
+		},
+		setPage(state, page) {
+			state.currPage = page;
 		},
 	},
 	actions: {

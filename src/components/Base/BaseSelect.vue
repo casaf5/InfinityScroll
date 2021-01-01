@@ -31,8 +31,5 @@ export default {
 			this.$emit('select', this.selected);
 		},
 	},
-	created() {
-		console.log(this.initialValue);
-	},
 };
 </script>
