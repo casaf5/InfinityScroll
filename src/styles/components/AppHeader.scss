@@ -1,0 +1,12 @@
+header {
+	background-color: $clr1;
+	width: 100%;
+	grid-column: 1/4;
+	grid-row: 1/2;
+	.header-container {
+		i:hover {
+			cursor: pointer;
+			color: white;
+		}
+	}
+}

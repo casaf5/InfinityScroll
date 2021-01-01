@@ -1,0 +1,14 @@
+.base-button {
+	padding: 5px 10px;
+	border-radius: 5px;
+	border: none;
+	background-color: $clr2;
+	color: black;
+	font-family: Poppins-Bold;
+	transition: 0.3s ease;
+	margin: 0 10px;
+	filter: brightness(0.9);
+	&:hover {
+		filter: brightness(1.1);
+	}
+}
