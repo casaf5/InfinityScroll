@@ -1,5 +1,5 @@
 <template>
-	<div id="app" class="site-main-layout" :style="getStyle">
+	<div id="app" class="site-main-layout">
 		<AppHeader />
 		<router-view />
 		<AppFooter />
@@ -14,12 +14,6 @@ export default {
 	components: {
 		AppHeader,
 		AppFooter,
-	},
-	computed: {
-		getStyle() {
-			let siteBg = this.$store.getters.getStyleOption('siteBg');
-			return `backgroundColor:${siteBg}`;
-		},
 	},
 };
 </script>

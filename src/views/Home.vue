@@ -1,60 +1,47 @@
 <template>
 	<div class="home pos-main-container">
 		<div class="home-wrapper flex col">
-			<!-- <Pagination /> -->
-			<PassengersList :passengers="passengers" />
-			<Loading v-if="loading" />
+			<InfinityScroll
+				triggerId="listContainer"
+				loader="bars"
+				loadingText="Loading..."
+				background="#03045e"
+				@onBottom="loadData"
+			>
+				<UserCard v-for="(user, idx) in fakeData" :user="user" :key="user.id" />
+			</InfinityScroll>
 		</div>
 	</div>
 </template>
 
 <script>
-import PassengersList from '@/components/PassengersList.vue';
-import Loading from '@/components/Loading.vue';
-import Pagination from '@/components/Pagination.vue';
-import { mapState } from 'vuex';
+import UserCard from '@/components/UserCard.vue';
+import InfinityScroll from '@/components/InfinityScroll.vue';
+
 export default {
 	name: 'Home',
 	components: {
-		PassengersList,
-		Loading,
-		Pagination,
+		InfinityScroll,
+		UserCard,
 	},
 	data() {
 		return {
-			currPage: 1,
-			countPerPage: 10,
+			fakeData: [],
 		};
 	},
-	computed: {
-		passengers() {
-			return this.$store.getters.passengers;
-		},
-		...mapState(['loading']),
-	},
 	methods: {
-		loadPassengers() {
-			this.$store.dispatch('loadPassengers', {
-				page: this.currPage,
-				count: this.countPerPage,
-			});
+		loadData() {
+			setTimeout(this.generateData, 500);
 		},
-		scrollTrigger() {
-			window.onscroll = (e) => {
-				let bottomOfWindow =
-					window.innerHeight + document.documentElement.scrollTop >= document.documentElement.scrollHeight;
-				if (bottomOfWindow) {
-					this.currPage++;
-					this.loadPassengers();
-				}
-			};
+		generateData() {
+			let currLength = this.fakeData.length;
+			for (let i = currLength; i < currLength + 10; i++) {
+				this.fakeData.push({ id: i });
+			}
 		},
 	},
 	created() {
-		this.loadPassengers();
-	},
-	mounted() {
-		this.scrollTrigger();
+		this.generateData();
 	},
 };
 </script>
